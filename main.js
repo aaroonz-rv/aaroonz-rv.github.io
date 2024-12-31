@@ -1,6 +1,6 @@
 (function (window) {
   window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
-  window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+    window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
   const FRAME_RATE = 50;
   const PARTICLE_NUM = 10000; // Increased particle count for denser effect
@@ -9,7 +9,7 @@
   const CANVASHEIGHT = 400;
   const CANVASID = 'canvas';
 
-  let texts = ['KLIK DI MANA AJA :)','PAKAI LANDSCAPE MODE YA', 'HEHE :)', 'HALO REVI', 'TIDAK TERASA YA', 'TAHUN INI', 'UDAH HAMPIR BERAKHIR', 'DI AKHIR TAHUN INI', 'AKU ADA SESUATU UNTUKMU', 'AKU TAHU KAMU PASTI KESAL', 'AKU BENER BENER MINTA MAAF','BTW, TERIMA KASIH VI', 'UDAH PERNAH MAU BERBAGI PENGALAMAN', 'AKU BERSYUKUR BISA KENAL KAMU', 'BISA PERNAH DEKAT SAMA KAMU', 'TAPI, SEPERTINYA', 'BELUM SAATNYA', 'EHH...>','BTW, SEMANGAT YAA :)', 'AKU TAHU KOK', 'KAMU PASTI BISA VI', 'TAHUN DEPAN', 'BERJUANG SAMA-SAMA', 'HARAPANKU 2025', 'KITA BISA BERBINCANG SEPERTI DULU', 'DENGAN ALMAMATER MASING-MASING', 'I', 'HOPE', 'YOU', 'DO YOUR BEST', 'AND ALLAH BE WITH YOU','AKU RASA CUKUP SEKIAN', 'MAAFIN AKU YA', 'PERNAH BUAT KAMU NDAK NYAMAN', 'APABILA KESEMPATAN', 'MEMPERTEMUKAN KITA LAGI', 'AKU TIDAK AKAN LAGI', 'MENYIA-NYIAKAN ITU', 'CLICK TO TEXT ME'];
+  let texts = ['KLIK DI MANA AJA :)','PAKAI LANDSCAPE MODE YA', 'HEHE :)', 'HALO REVI', 'TIDAK TERASA YA', 'TAHUN INI', 'UDAH HAMPIR BERAKHIR', 'DI AKHIR TAHUN INI', 'AKU ADA SESUATU UNTUKMU', 'AKU TAHU KAMU PASTI KESAL', 'AKU BENER BENER MINTA MAAF','BTW, TERIMA KASIH VI', 'UDAH PERNAH MAU BERBAGI PENGALAMAN', 'AKU BERSYUKUR BISA KENAL KAMU', 'BISA PERNAH DEKAT SAMA KAMU', 'TAPI, SEPERTINYA', 'BELUM SAATNYA', 'EHH...>', 'BTW, SEMANGAT YAA :)', 'AKU TAHU KOK', 'KAMU PASTI BISA VI', 'TAHUN DEPAN', 'BERJUANG SAMA-SAMA', 'HARAPANKU 2025', 'KITA BISA BERBINCANG SEPERTI DULU', 'DENGAN ALMAMATER MASING-MASING', 'I', 'HOPE', 'YOU', 'DO YOUR BEST', 'AND ALLAH BE WITH YOU', 'AKU RASA CUKUP SEKIAN', 'MAAFIN AKU YA', 'PERNAH BUAT KAMU NDAK NYAMAN', 'APABILA KESEMPATAN', 'MEMPERTEMUKAN KITA LAGI', 'AKU TIDAK AKAN LAGI', 'MENYIA-NYIAKAN ITU', 'CLICK TO TEXT ME'];
 
   let canvas,
     ctx,
@@ -18,9 +18,9 @@
     text = texts[0],
     textIndex = 0,
     textSize = 50;
-  
-  let lastClickTime = 0;  // Variable to track last click time
-  const clickDelay = 500; // Minimum delay between clicks in milliseconds
+
+  let lastClickTime = 0;
+  const clickDelay = 500;
 
   function draw() {
     ctx.clearRect(0, 0, CANVASWIDTH, CANVASHEIGHT);
@@ -45,8 +45,8 @@
 
   function particleText(imgData) {
     var pxls = [];
-    for (var w = CANVASWIDTH; w > 0; w -= 2) { // Adjusted for tighter arc
-      for (var h = 0; h < CANVASHEIGHT; h += 2) { // Adjusted for tighter arc
+    for (var w = CANVASWIDTH; w > 0; w -= 2) {
+      for (var h = 0; h < CANVASHEIGHT; h += 2) {
         var index = (w + h * (CANVASWIDTH)) * 4;
         if (imgData.data[index] > 1) {
           pxls.push([w, h]);
@@ -107,13 +107,12 @@
   }
 
   function setDimensions() {
-    // Centering the canvas
     canvas.width = CANVASWIDTH;
     canvas.height = CANVASHEIGHT;
     canvas.style.position = 'absolute';
     canvas.style.left = '50%';
     canvas.style.top = '50%';
-    canvas.style.transform = 'translate(-50%, -50%)'; // Centers the canvas
+    canvas.style.transform = 'translate(-50%, -50%)';
     canvas.style.zIndex = '10';
   }
 
@@ -121,27 +120,22 @@
     document.addEventListener('click', function (e) {
       const currentTime = Date.now();
       if (currentTime - lastClickTime < clickDelay) {
-        return; // Ignore click if it's within the delay period
+        return;
       }
       lastClickTime = currentTime;
 
-      document.querySelector('.song').play();
       textIndex++;
       if (textIndex >= texts.length) {
         textIndex--;
         return;
       }
       text = texts[textIndex];
-      if (textIndex === texts.length - 1) {
-        showSweetAlert(); // Show SweetAlert when final text is displayed
-      }
-      console.log(textIndex);
     }, false);
 
     document.addEventListener('touchstart', function (e) {
       const currentTime = Date.now();
       if (currentTime - lastClickTime < clickDelay) {
-        return; // Ignore touch if it's within the delay period
+        return;
       }
       lastClickTime = currentTime;
 
@@ -151,50 +145,7 @@
         return;
       }
       text = texts[textIndex];
-      if (textIndex === texts.length - 1) {
-        showSweetAlert(); // Show SweetAlert when final text is displayed
-      }
-      console.log(textIndex);
     }, false);
-  }
-
-  function showSweetAlert() {
-    Swal.fire({
-      html: `...`, // The same SweetAlert code here
-      showConfirmButton: false,
-      allowOutsideClick: false,
-      background: 'rgba(0, 0, 0, 0.1)',
-      customClass: {
-        popup: 'swal2-elegant',
-      },
-      didOpen: () => {
-        const button = document.getElementById('sendToWhatsApp');
-        button.addEventListener('click', () => {
-          button.style.backgroundColor = '#808080';
-
-          const message = document.getElementById('message').value.trim();
-          if (message) {
-            const whatsappURL = `https://wa.me/6285608107170?text=${encodeURIComponent(message)}`;
-            window.open(whatsappURL, '_blank');
-          } else {
-            Swal.fire({
-              title: 'Pesan Kosong!',
-              text: 'Mohon isi pesan sebelum mengirim.',
-              icon: 'warning',
-              confirmButtonText: 'OK',
-              background: '#f9f9f9',
-              width: '500px',
-              padding: '20px',
-              customClass: {
-                popup: 'swal2-landscape',
-              },
-            }).then(() => {
-              showSweetAlert();
-            });
-          }
-        });
-      },
-    });
   }
 
   function init() {
@@ -218,8 +169,7 @@
       let spread = canvas.height;
       let size = Math.random() * 1.2;
 
-      this.delta = 0.06;
-
+      this.delta = 0.12; // Increased speed
       this.x = 0;
       this.y = 0;
 
@@ -234,8 +184,8 @@
       this.inText = false;
 
       this.opacity = 0;
-      this.fadeInRate = 0.005;
-      this.fadeOutRate = 0.03;
+      this.fadeInRate = 0.01; // Faster fade-in
+      this.fadeOutRate = 0.06; // Faster fade-out
       this.opacityTresh = 0.98;
       this.fadingOut = true;
       this.fadingIn = true;
@@ -269,11 +219,6 @@
       ctx.closePath();
       ctx.fill();
     }
-  }
-
-  var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-  if (!isChrome) {
-    $('#iframeAudio').remove();
   }
 
   init();
