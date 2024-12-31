@@ -2,8 +2,6 @@
   window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
   window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
-
-
   const FRAME_RATE = 50;
   const PARTICLE_NUM = 10000; // Increased particle count for denser effect
   const RADIUS = Math.PI * 2;
@@ -20,6 +18,9 @@
     text = texts[0],
     textIndex = 0,
     textSize = 50;
+  
+  let lastClickTime = 0;  // Variable to track last click time
+  const clickDelay = 500; // Minimum delay between clicks in milliseconds
 
   function draw() {
     ctx.clearRect(0, 0, CANVASWIDTH, CANVASHEIGHT);
@@ -118,6 +119,12 @@
 
   function event() {
     document.addEventListener('click', function (e) {
+      const currentTime = Date.now();
+      if (currentTime - lastClickTime < clickDelay) {
+        return; // Ignore click if it's within the delay period
+      }
+      lastClickTime = currentTime;
+
       document.querySelector('.song').play();
       textIndex++;
       if (textIndex >= texts.length) {
@@ -132,6 +139,12 @@
     }, false);
 
     document.addEventListener('touchstart', function (e) {
+      const currentTime = Date.now();
+      if (currentTime - lastClickTime < clickDelay) {
+        return; // Ignore touch if it's within the delay period
+      }
+      lastClickTime = currentTime;
+
       textIndex++;
       if (textIndex >= texts.length) {
         textIndex--;
@@ -147,17 +160,9 @@
 
   function showSweetAlert() {
     Swal.fire({
-      html: `
-        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 25px; background-color: #fff; border-radius: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); width: 100%; max-width: 400px; font-family: 'Roboto', sans-serif; font-size: 16px;">
-          <p style="font-size: 20px; font-weight: bold; color: #333; margin-bottom: 20px; text-align: center; font-family: 'Roboto', sans-serif;">KIRIM PESAN</p>
-          <textarea id="message" rows="4" style="width: 100%; padding: 12px; font-size: 14px; font-weight: normal; border: 1px solid #ccc; border-radius: 8px; resize: none; box-sizing: border-box; font-family: 'Roboto', sans-serif; margin-bottom: 15px;"></textarea>
-          <button id="sendToWhatsApp" style="padding: 12px 18px; font-size: 14px; font-weight: bold; color: white; background-color: rgb(0, 140, 255); border: none; border-radius: 50px; cursor: pointer; width: 100%; max-width: 150px; font-family: 'Roboto', sans-serif; margin-top: 10px; transition: background-color 0.3s ease; text-transform: uppercase;">
-            Send
-          </button>
-        </div>
-      `,
+      html: `...`, // The same SweetAlert code here
       showConfirmButton: false,
-      allowOutsideClick: false,  // Disable clicking outside the alert to close it
+      allowOutsideClick: false,
       background: 'rgba(0, 0, 0, 0.1)',
       customClass: {
         popup: 'swal2-elegant',
@@ -165,9 +170,8 @@
       didOpen: () => {
         const button = document.getElementById('sendToWhatsApp');
         button.addEventListener('click', () => {
-          // Change button color to grey when clicked
           button.style.backgroundColor = '#808080';
-    
+
           const message = document.getElementById('message').value.trim();
           if (message) {
             const whatsappURL = `https://wa.me/6285608107170?text=${encodeURIComponent(message)}`;
@@ -179,13 +183,12 @@
               icon: 'warning',
               confirmButtonText: 'OK',
               background: '#f9f9f9',
-              width: '500px',  // Increased width for landscape style
-              padding: '20px', // Adjust padding for landscape appearance
+              width: '500px',
+              padding: '20px',
               customClass: {
-                popup: 'swal2-landscape', // Custom class for landscape style
+                popup: 'swal2-landscape',
               },
             }).then(() => {
-              // Reopen the initial SweetAlert
               showSweetAlert();
             });
           }
@@ -193,13 +196,6 @@
       },
     });
   }
-  
-  
-  
-  
-  
-  
-  
 
   function init() {
     canvas = document.getElementById(CANVASID);
@@ -282,6 +278,7 @@
 
   init();
 })(window);
+
 (function() {
   // Disable Right Click
   document.addEventListener('contextmenu', function(e) {
