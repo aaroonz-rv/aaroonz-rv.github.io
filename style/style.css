@@ -1,0 +1,394 @@
+#countdown-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  visibility: visible; /* Default terlihat */
+  opacity: 1;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#countdown-container.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.countdown-text {
+  font-family: 'Orbitron', sans-serif; /* Atau gunakan 'Digital-7' */
+  font-size: 18px; /* Ukuran teks */
+  font-weight: 400;
+  margin-bottom: 10px; /* Jarak antara teks dan countdown */
+  color: #ffcc00; /* Warna teks */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+#countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 36px;
+  font-weight: bold;
+  letter-spacing: 5px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+
+#countdown span {
+  margin: 0 3px;
+}
+
+#countdown .separator {
+  color: #ffcc00;
+  text-shadow: 1px 1px 4px rgba(255, 204, 0, 0.7);
+}
+
+.custom-popup {
+  width: 300px !important;
+  /* Adjust width */
+  height: auto !important;
+  /* Adjust height to auto */
+  padding: 20px !important;
+  /* Adjust padding */
+  font-size: 14px !important;
+  /* Adjust font size */
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
+
+body::after {
+  content: "© adn08 | 2025";
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  font-size: 14px;
+  color: rgb(255, 237, 189);
+  font-weight: lighter;
+}
+
+.song {
+  visibility: hidden;
+}
+
+.container {
+  height: 100vh;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  visibility: hidden;
+  width: 100vw;
+}
+
+.container>div {
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 20vh;
+}
+
+.one {
+  font-size: 4.5rem;
+  color: rgb(255, 237, 189);
+}
+
+.two {
+  font-size: 1.6rem;
+  font-weight: lighter;
+}
+
+.three {
+  font-size: 2rem;
+  color: rgb(255, 237, 189);
+}
+
+.four .text-box {
+  border: 3px solid #aaa;
+  border-radius: 5px;
+  margin: 0 auto;
+  padding: 10px;
+  position: relative;
+  width: 600px;
+}
+
+.text-box p {
+  margin: 0;
+  text-align: justify;
+  color: rgb(255, 237, 189);
+}
+
+.text-box span {
+  visibility: hidden;
+}
+
+.text-box .fake-btn {
+  background-color: #aaa;
+  border-radius: 3px;
+  bottom: -50px;
+  color: rgb(255, 237, 189);
+  padding: .5rem 1rem;
+  position: absolute;
+  right: 5px;
+}
+
+.five p {
+  font-size: 2rem;
+  left: 0;
+  position: absolute;
+  right: 0;
+  color: rgb(255, 237, 189);
+}
+
+.idea-3 strong {
+  border-radius: 3px;
+  display: inline-block;
+  padding: 3px 5px;
+  margin-top: 10px;
+  /* Adds space above the strong element to push it downward */
+}
+
+.five .idea-5 {
+  font-size: 4rem;
+}
+
+.idea-5 span,
+.idea-6 span {
+  display: inline-block;
+}
+
+.wish-hbd span {
+  margin-right: 6px;
+  display: inline-block;
+}
+
+.idea-6 span {
+  font-size: 15rem;
+}
+
+
+.six {
+  position: relative;
+  top: 10vh;
+  z-index: 1;
+}
+
+.six h5 {
+  color: rgb(255, 237, 189);
+}
+
+.six img {
+  display: inline-block;
+  height: 250px;
+  /* Adjusted height */
+  max-width: 80%;
+  /* Adjusted max width to make the image smaller */
+  position: relative;
+  z-index: 0;
+  /* Ensure image is behind the text */
+  border-radius: 50%;
+  /* Makes the image round */
+  border: 5px solid #fff;
+  /* White border around the circle */
+  padding: 5px;
+  /* Optional: Adds space between image and border */
+}
+
+.baloons img {
+  display: inline-block;
+  position: absolute;
+}
+
+.baloons img:nth-child(even) {
+  left: -10%;
+}
+
+.baloons img:nth-child(odd) {
+  right: -10%;
+}
+
+.baloons img:nth-child(3n + 0) {
+  left: 30%;
+}
+
+.seven,
+.eight {
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+
+.eight svg {
+  left: 0;
+  position: absolute;
+  top: 0;
+  visibility: hidden;
+  width: 25px;
+  z-index: -1;
+}
+
+.eight svg:nth-child(1) {
+  fill: #bd6ecf;
+  left: 5vw;
+  top: 7vh;
+}
+
+.eight svg:nth-child(2) {
+  fill: #7dd175;
+  left: 35vw;
+  top: 23vh;
+}
+
+.eight svg:nth-child(3) {
+  fill: #349d8b;
+  left: 23vw;
+  top: 33vh;
+}
+
+.eight svg:nth-child(4) {
+  fill: #347a9d;
+  left: 57vw;
+  top: 43vh;
+}
+
+.eight svg:nth-child(5) {
+  fill: #c66053;
+  left: 7vw;
+  top: 68vh;
+}
+
+.eight svg:nth-child(6) {
+  fill: #bfaa40;
+  left: 77vw;
+  top: 42vh;
+}
+
+.eight svg:nth-child(7) {
+  fill: #e3bae8;
+  left: 83vw;
+  top: 68vh;
+}
+
+.eight svg:nth-child(8) {
+  fill: #8762cb;
+  left: 37vw;
+  top: 86vh;
+}
+
+.eight svg:nth-child(9) {
+  fill: #9a90da;
+  left: 87vw;
+  top: 94vh;
+}
+
+.wish-hbd {
+  font-size: 2rem;
+  /* Reduced font size */
+  margin: 0;
+  color: rgb(255, 237, 189);
+  position: absolute;
+  top: -70px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  text-align: center;
+  overflow: hidden;
+  width: 100%;
+  text-transform: uppercase;
+}
+
+.wish h5 {
+  font-size: 1.4rem;
+  /* Smaller font size for wish text */
+  font-weight: lighter;
+  margin: 10px 0 0;
+}
+
+.nine p {
+  font-size: 2rem;
+  font-weight: lighter;
+  color: rgb(255, 237, 189);
+}
+
+#replay {
+  cursor: pointer;
+  z-index: 3;
+}
+
+/* Media Queries */
+@media screen and (max-height: 1000px) {
+  .six {
+    left: 40%;
+  }
+}
+
+@media screen and (max-height: 800px) {
+  .six {
+    left: 37%;
+  }
+}
+
+@media screen and (max-height: 700px) {
+  .six {
+    left: 32%;
+  }
+}
+
+@media screen and (max-height: 850px) and (max-width: 450px) {
+  .six {
+    left: 32%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    width: 90%;
+  }
+
+  .four .text-box {
+    width: 90%;
+  }
+
+  .text-box .fake-btn {
+    bottom: -38px;
+    right: 5px;
+  }
+
+  .idea-5 span {
+    display: block;
+  }
+
+  .idea-6 span {
+    font-size: 10rem;
+  }
+
+  .six .hat {
+    /* top: -20px; */
+    width: 50px;
+  }
+
+  .wish-hbd {
+    font-size: 2.2em;
+  }
+
+  .wish h5 {
+    font-size: 1.4rem;
+  }
+
+  .nine p {
+    font-size: 1.5rem;
+    font-weight: lighter;
+  }
+}
